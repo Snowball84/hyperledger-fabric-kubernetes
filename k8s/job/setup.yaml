@@ -1,4 +1,5 @@
-
+#          configtxgen -profile OrdererGenesis -channelID orderer-system-channel -outputBlock ./artifacts/orderer.genesis.block;
+#          configtxgen -profile ChannelAll -outputCreateChannelTx ./artifacts/channelall.tx -channelID channelall;
 apiVersion: batch/v1
 kind: Job
 metadata:
@@ -34,8 +35,7 @@ spec:
         args:
         - mkdir artifacts;
           cryptogen generate --config=./crypto-config.yaml;
-          configtxgen -profile OrdererGenesis -channelID orderer-system-channel -outputBlock ./artifacts/orderer.genesis.block;
-          configtxgen -profile ChannelAll -outputCreateChannelTx ./artifacts/channelall.tx -channelID channelall;
+          configtxgen -profile Channel1 -outputBlock ./artifacts/channelall.tx -channelID channelall;
           cd -;
           mkdir -p /{buildpack/bin,chaincode-package,peer-core-config};
           cp -R /repo/buildpack/bin/* /buildpack/bin;

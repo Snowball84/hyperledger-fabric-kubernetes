@@ -1,3 +1,4 @@
+#storageClassName: manual
 apiVersion: v1
 kind: PersistentVolume
 metadata:
@@ -5,10 +6,57 @@ metadata:
   labels:
     type: local
 spec:
-  storageClassName: manual
   persistentVolumeReclaimPolicy: Retain
   capacity:
-    storage: 1Gi
+    storage: 100Mi
+  accessModes:
+    - ReadWriteMany
+  hostPath:
+    path: "/mnt/data"
+
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: local-volume-2
+  labels:
+    type: local
+spec:
+  persistentVolumeReclaimPolicy: Retain
+  capacity:
+    storage: 100Mi
+  accessModes:
+    - ReadWriteMany
+  hostPath:
+    path: "/mnt/data"
+
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: local-volume-3
+  labels:
+    type: local
+spec:
+  persistentVolumeReclaimPolicy: Retain
+  capacity:
+    storage: 100Mi
+  accessModes:
+    - ReadWriteMany
+  hostPath:
+    path: "/mnt/data"
+
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: local-volume-4
+  labels:
+    type: local
+spec:
+  persistentVolumeReclaimPolicy: Retain
+  capacity:
+    storage: 100Mi
   accessModes:
     - ReadWriteMany
   hostPath:
