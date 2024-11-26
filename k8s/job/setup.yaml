@@ -36,7 +36,9 @@ spec:
         - ls;
           mkdir artifacts;
           cryptogen generate --config=./crypto-config.yaml;
-          configtxgen -profile Channel1 -outputBlock ./artifacts/channelall.tx -channelID channelall;
+          configtxgen -profile Channel1 -outputBlock ./artifacts/channel1.tx -channelID channel1;
+          configtxgen -profile Channel2 -outputBlock ./artifacts/channel2.tx -channelID channel2;
+          configtxgen -profile Channel3 -outputBlock ./artifacts/channel3.tx -channelID channel3;
           cd -;
           mkdir -p /{buildpack/bin,chaincode-package,peer-core-config};
           cp -R /repo/buildpack/bin/* /buildpack/bin;

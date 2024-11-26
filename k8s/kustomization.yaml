@@ -16,4 +16,8 @@ resources:
   - statefulsets/org3.dummy.com/peer1.yaml
   - deployments/chaincodes/demo.yaml
   - deployments/org1.dummy.com/cli.yaml
+  - deployments/org1.dummy.com/cli-1.yaml  
   - deployments/org2.dummy.com/cli.yaml
+  - deployments/org2.dummy.com/cli-1.yaml
+  - deployments/org3.dummy.com/cli.yaml
+  - deployments/org3.dummy.com/cli-1.yaml
