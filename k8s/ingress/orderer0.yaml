@@ -1,3 +1,4 @@
+#host: operations.orderer0.dummy.com
 kind: Ingress
 apiVersion: networking.k8s.io/v1
 metadata:
@@ -19,16 +20,20 @@ spec:
                 name: orderer0-dummy-com
                 port:
                   name: listen
-    - host: operations.orderer0.dummy.com
-      http:
-        paths:
-          - path: /healthz
-            pathType: Exact
-            backend:
-              service:
-                name: orderer0-dummy-com
-                port:
-                  name: operations
+#    - http:
+#        paths:
+#          - path: /healthz
+#            pathType: Exact
+#            backend:
+#              service:
+#                name: peer0-org1-dummy-com
+#                port:
+#                  name: operations
+  defaultBackend:
+    service:
+      name: peer0-org1-dummy-com
+      port:
+        name: listen
   tls:
     - hosts:
         - orderer0.dummy.com

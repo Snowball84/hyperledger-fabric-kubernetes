@@ -1,0 +1,35 @@
+##host: operations.orderer0.dummy.com
+#kind: Ingress
+#apiVersion: networking.k8s.io/v1
+#metadata:
+#  name: peer0-org1-dummy-com
+#  namespace: dummy-com
+#  annotations:
+#    nginx.ingress.kubernetes.io/backend-protocol: "GRPC"
+#    nginx.ingress.kubernetes.io/proxy-body-size: "0" # no limit
+#    nginx.ingress.kubernetes.io/ssl-passthrough: "true" # orderer should teminate the ssl traffic
+#spec:
+#  ingressClassName: nginx
+#  rules:
+#    - host: operations.peer0.org1.dummy.com
+#      http:
+#        paths:
+#          - path: /healthz
+#            pathType: Exact
+#            backend:
+#              service:
+#                name: peer0-org1-dummy-com
+#                port:
+#                  name: listen  
+#    - http:
+#        paths:
+#          - path: /
+#            pathType: Prefix
+#            backend:
+#              service:
+#                name: peer0-org1-dummy-com
+#                port:
+#                  name: operations
+#  tls:
+#    - hosts:
+#        - peer0-org1-dummy-com

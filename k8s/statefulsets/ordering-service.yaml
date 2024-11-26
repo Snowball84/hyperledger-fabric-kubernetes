@@ -1,3 +1,7 @@
+#            - name: ORDERER_GENERAL_BOOTSTRAPMETHOD
+#              value: file
+#            - name: ORDERER_GENERAL_BOOTSTRAPFILE
+#              value: /var/hyperledger/orderer/orderer.genesis.block
 ---
 
 apiVersion: apps/v1
@@ -37,9 +41,9 @@ spec:
             - name: FABRIC_LOGGING_SPEC
               value: info
             - name: ORDERER_GENERAL_BOOTSTRAPMETHOD
-              value: file
-            - name: ORDERER_GENERAL_BOOTSTRAPFILE
-              value: /var/hyperledger/orderer/orderer.genesis.block
+              value: none
+            - name: ORDERER_CHANNELPARTICIPATION_ENABLED
+              value: "true"
             - name: ORDERER_GENERAL_LISTENADDRESS
               value: "0.0.0.0"
             - name: ORDERER_GENERAL_LISTENPORT
@@ -64,6 +68,18 @@ spec:
               value: /var/hyperledger/orderer/tls/server.crt
             - name: ORDERER_GENERAL_CLUSTER_CLIENTPRIVATEKEY
               value: /var/hyperledger/orderer/tls/server.key
+            - name: ORDERER_ADMIN_LISTENADDRESS
+              value: "0.0.0.0:9443"
+            - name: ORDERER_ADMIN_TLS_ENABLED
+              value: "true"
+            - name: ORDERER_ADMIN_TLS_CERTIFICATE
+              value: /var/hyperledger/orderer/tls/server.crt
+            - name: ORDERER_ADMIN_TLS_PRIVATEKEY
+              value: /var/hyperledger/orderer/tls/server.key
+            - name: ORDERER_ADMIN_TLS_ROOTCAS
+              value: "[/var/hyperledger/orderer/tls/ca.crt]"
+            - name: ORDERER_ADMIN_TLS_CLIENTROOTCAS
+              value: "[/var/hyperledger/orderer/tls/ca.crt]"
           livenessProbe:
             httpGet:
               path: /healthz
@@ -75,6 +91,7 @@ spec:
           ports:
           - containerPort: 7050
           - containerPort: 8443
+          - containerPort: 9443
           volumeMounts:
             - name: hlf-artifacts
               mountPath: /var/hyperledger/orderer/orderer.genesis.block
@@ -125,9 +142,9 @@ spec:
             - name: FABRIC_LOGGING_SPEC
               value: info
             - name: ORDERER_GENERAL_BOOTSTRAPMETHOD
-              value: file
-            - name: ORDERER_GENERAL_BOOTSTRAPFILE
-              value: /var/hyperledger/orderer/orderer.genesis.block
+              value: none
+            - name: ORDERER_CHANNELPARTICIPATION_ENABLED
+              value: "true"
             - name: ORDERER_GENERAL_LISTENADDRESS
               value: "0.0.0.0"
             - name: ORDERER_GENERAL_LISTENPORT
@@ -152,6 +169,18 @@ spec:
               value: /var/hyperledger/orderer/tls/server.crt
             - name: ORDERER_GENERAL_CLUSTER_CLIENTPRIVATEKEY
               value: /var/hyperledger/orderer/tls/server.key
+            - name: ORDERER_ADMIN_LISTENADDRESS
+              value: "0.0.0.0:9443"
+            - name: ORDERER_ADMIN_TLS_ENABLED
+              value: "true"
+            - name: ORDERER_ADMIN_TLS_CERTIFICATE
+              value: /var/hyperledger/orderer/tls/server.crt
+            - name: ORDERER_ADMIN_TLS_PRIVATEKEY
+              value: /var/hyperledger/orderer/tls/server.key
+            - name: ORDERER_ADMIN_TLS_ROOTCAS
+              value: "[/var/hyperledger/orderer/tls/ca.crt]"
+            - name: ORDERER_ADMIN_TLS_CLIENTROOTCAS
+              value: "[/var/hyperledger/orderer/tls/ca.crt]"
           livenessProbe:
             httpGet:
               path: /healthz
@@ -163,6 +192,7 @@ spec:
           ports:
           - containerPort: 7050
           - containerPort: 8443
+          - containerPort: 9443
           volumeMounts:
             - name: hlf-artifacts
               mountPath: /var/hyperledger/orderer/orderer.genesis.block
@@ -213,9 +243,7 @@ spec:
             - name: FABRIC_LOGGING_SPEC
               value: info
             - name: ORDERER_GENERAL_BOOTSTRAPMETHOD
-              value: file
-            - name: ORDERER_GENERAL_BOOTSTRAPFILE
-              value: /var/hyperledger/orderer/orderer.genesis.block
+              value: none
             - name: ORDERER_GENERAL_LISTENADDRESS
               value: "0.0.0.0"
             - name: ORDERER_GENERAL_LISTENPORT

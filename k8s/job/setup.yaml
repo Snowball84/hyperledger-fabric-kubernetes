@@ -17,7 +17,7 @@ spec:
             - clone
             - --single-branch
             - --
-            - https://gitee.com/zccui/hyperledger-fabric-kubernetes.git
+            - https://github.com/Snowball84/hyperledger-fabric-kubernetes.git
             - /repo
           securityContext:
             runAsUser: 1
@@ -33,7 +33,8 @@ spec:
         workingDir: /repo/hlf-config
         command: ["/bin/sh",  "-c"]
         args:
-        - mkdir artifacts;
+        - ls;
+          mkdir artifacts;
           cryptogen generate --config=./crypto-config.yaml;
           configtxgen -profile Channel1 -outputBlock ./artifacts/channelall.tx -channelID channelall;
           cd -;
