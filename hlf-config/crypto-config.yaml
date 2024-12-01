@@ -32,7 +32,7 @@ PeerOrgs:
     Domain: org1.dummy.com
     EnableNodeOUs: true
     Template:
-      Count: 2
+      Count: 3
       SANS:
         - localhost
         - 127.0.0.1
@@ -46,7 +46,7 @@ PeerOrgs:
     Domain: org2.dummy.com
     EnableNodeOUs: true
     Template:
-      Count: 2
+      Count: 3
       SANS:
         - localhost
         - 127.0.0.1
@@ -60,7 +60,7 @@ PeerOrgs:
     Domain: org3.dummy.com
     EnableNodeOUs: true
     Template:
-      Count: 2
+      Count: 3
       SANS:
         - localhost
         - 127.0.0.1

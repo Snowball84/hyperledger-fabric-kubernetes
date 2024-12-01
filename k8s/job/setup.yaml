@@ -8,6 +8,7 @@ metadata:
 spec:
   template:
     spec:
+      nodeName: worker1
       restartPolicy: Never
       initContainers:
         - name: git-clone
@@ -19,6 +20,9 @@ spec:
             - --
             - https://github.com/Snowball84/hyperledger-fabric-kubernetes.git
             - /repo
+          env:
+            - name: ALL_PROXY
+              value: "socks5://192.168.31.70:7890"
           securityContext:
             runAsUser: 1
             allowPrivilegeEscalation: false

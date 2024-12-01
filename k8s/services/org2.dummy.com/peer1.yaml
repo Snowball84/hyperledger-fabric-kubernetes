@@ -5,7 +5,7 @@ metadata:
   name: peer1-org2-dummy-com
   namespace: dummy-com
 spec:
-  type: ClusterIP
+  type: NodePort
   selector:
     component: "peer1.org2.dummy.com"
   ports:
@@ -13,6 +13,7 @@ spec:
     port: 7051
     protocol: TCP
     targetPort: 7051
+    nodePort: 30124
   - name: "chaincode-listen"
     port: 7052
     protocol: TCP
