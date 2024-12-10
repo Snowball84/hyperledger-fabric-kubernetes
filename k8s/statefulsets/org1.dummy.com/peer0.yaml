@@ -21,6 +21,7 @@ spec:
         component: "peer0.org1.dummy.com"
         type: peer
     spec:
+      nodeName: worker2-virtual-machine
       volumes:
         - name: chaincode-buildpack
           persistentVolumeClaim:

@@ -29,4 +29,4 @@ resources:
   - deployments/org2.dummy.com/cli-2.yaml
   - deployments/org3.dummy.com/cli.yaml
   - deployments/org3.dummy.com/cli-1.yaml
-  - deployments/org2.dummy.com/cli-2.yaml
+  - deployments/org3.dummy.com/cli-2.yaml
