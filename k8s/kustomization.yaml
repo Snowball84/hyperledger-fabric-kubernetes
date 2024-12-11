@@ -2,24 +2,24 @@ resources:
   - services/ordering-service.yaml
   - services/org1.dummy.com/peer0.yaml
   - services/org1.dummy.com/peer1.yaml
-  - services/org1.dummy.com/peer2.yaml
+#  - services/org1.dummy.com/peer2.yaml
   - services/org2.dummy.com/peer0.yaml
   - services/org2.dummy.com/peer1.yaml
-  - services/org2.dummy.com/peer2.yaml
+#  - services/org2.dummy.com/peer2.yaml
   - services/org3.dummy.com/peer0.yaml
   - services/org3.dummy.com/peer1.yaml
-  - services/org3.dummy.com/peer2.yaml
+#  - services/org3.dummy.com/peer2.yaml
   - services/chaincodes/demo.yaml
   - statefulsets/ordering-service.yaml
   - statefulsets/org1.dummy.com/peer0.yaml
   - statefulsets/org1.dummy.com/peer1.yaml
-  - statefulsets/org1.dummy.com/peer2.yaml
+#  - statefulsets/org1.dummy.com/peer2.yaml
   - statefulsets/org2.dummy.com/peer0.yaml
   - statefulsets/org2.dummy.com/peer1.yaml
-  - statefulsets/org2.dummy.com/peer2.yaml
+#  - statefulsets/org2.dummy.com/peer2.yaml
   - statefulsets/org3.dummy.com/peer0.yaml
   - statefulsets/org3.dummy.com/peer1.yaml
-  - statefulsets/org3.dummy.com/peer2.yaml
+#  - statefulsets/org3.dummy.com/peer2.yaml
   - deployments/chaincodes/demo.yaml
   - deployments/org1.dummy.com/cli.yaml
   - deployments/org1.dummy.com/cli-1.yaml
