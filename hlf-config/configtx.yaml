@@ -464,7 +464,6 @@ Profiles:
         Application:
             <<: *ApplicationDefaults
             Organizations:
-                - *Org1
                 - *Org2
             Capabilities:
                 <<: *ApplicationCapabilities
@@ -479,7 +478,7 @@ Profiles:
             <<: *ApplicationDefaults
             Organizations:
                 - *Org1
-                - *Org2
+                - *Org3
             Capabilities:
                 <<: *ApplicationCapabilities
     Channel3:
