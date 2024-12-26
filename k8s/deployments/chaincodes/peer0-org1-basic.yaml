@@ -24,6 +24,6 @@ spec:
             - name: CHAINCODE_SERVER_ADDRESS
               value: 0.0.0.0:9999
             - name: CORE_CHAINCODE_ID_NAME
-              value: basic_1.0:04c7115f0b12be22e96d88e9072665b93254b1c3f1afa13722065545d6f9d347
+              value: basic_1.0:73241a8c9742aaab7bc5c9600d2fc9c1a9d6f9c74db08e927c34adefcea63cce
           ports:
             - containerPort: 9999
