@@ -1,0 +1,29 @@
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: peer0-org1-chaincode-demo
+  namespace: dummy-com
+  labels: 
+    chaincode: peer0-org1-chaincode-demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      chaincode: peer0-org1-chaincode-demo
+  template:
+    metadata:
+      labels:
+        chaincode: peer0-org1-chaincode-demo
+    spec:
+      containers:
+        - name: peer0-org1-chaincode-demo
+          image: basicj_ccaas_image
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: CORE_CHAINCODE_ADDRESS
+              value: 0.0.0.0:9999
+            - name: CORE_CHAINCODE_ID
+              value: basic_1.0:d3fd0e21f4faecf0349d98eb83ce3fcebfa0c45346f3218b85478367534d0862
+          ports:
+            - containerPort: 9999

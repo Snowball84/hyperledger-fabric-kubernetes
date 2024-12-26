@@ -20,15 +20,16 @@ spec:
                 name: orderer0-dummy-com
                 port:
                   name: listen
-#    - http:
-#        paths:
-#          - path: /healthz
-#            pathType: Exact
-#            backend:
-#              service:
-#                name: peer0-org1-dummy-com
-#                port:
-#                  name: operations
+    - host: operations.orderer0.dummy.com
+      http:
+        paths:
+          - path: /healthz
+            pathType: Exact
+            backend:
+              service:
+                name: orderer0-dummy-com
+                port:
+                  name: operations
   defaultBackend:
     service:
       name: peer0-org1-dummy-com

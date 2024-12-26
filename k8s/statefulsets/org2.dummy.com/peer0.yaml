@@ -92,6 +92,8 @@ spec:
               value: /var/hyperledger/peer/tls/server.key
             - name: CORE_PEER_TLS_SERVERHOSTOVERRIDE
               value: peer0-org2-dummy-com
+            - name: CHAINCODE_AS_A_SERVICE_BUILDER_CONFIG
+              value: {"peername":"peer0org2"}
             - name: CORE_LEDGER_STATE_STATEDATABASE
               value: CouchDB
             - name: CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS
