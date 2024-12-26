@@ -560,6 +560,8 @@ chaincode:
     externalBuilders:
         - name: buildpack
           path: /opt/buildpack
+          propagateEnvironment:
+           - CHAINCODE_AS_A_SERVICE_BUILDER_CONFIG
           
     # The maximum duration to wait for the chaincode build and install process
     # to complete.

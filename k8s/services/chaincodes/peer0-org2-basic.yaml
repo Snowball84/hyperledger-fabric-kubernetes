@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: peer0-org2-chaincode-as-external-service
+  name: peer0org2-assettransfer-ccaas
   namespace: dummy-com
 spec:
   type: ClusterIP

@@ -21,7 +21,7 @@ spec:
         component: "peer0.org2.dummy.com"
         type: peer
     spec:
-      nodeName: worker3-virtual-machine
+#      nodeName: worker3-virtual-machine
       volumes:
         - name: chaincode-buildpack
           persistentVolumeClaim:
@@ -93,7 +93,7 @@ spec:
             - name: CORE_PEER_TLS_SERVERHOSTOVERRIDE
               value: peer0-org2-dummy-com
             - name: CHAINCODE_AS_A_SERVICE_BUILDER_CONFIG
-              value: {"peername":"peer0org2"}
+              value: '{"peername":"peer0org2"}'
             - name: CORE_LEDGER_STATE_STATEDATABASE
               value: CouchDB
             - name: CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS
