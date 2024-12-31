@@ -40,6 +40,7 @@ PeerOrgs:
         - "{{.Hostname}}-org1-dummy-com"
         - "{{.Hostname}}-org1-dummy-com.dummy-com.svc.cluster.local"
         - "{{.Hostname}}.org1.dummy.com"
+        - "peers.org1.dummy.com"
     Users:
       Count: 1
   - Name: Org2
@@ -54,6 +55,7 @@ PeerOrgs:
         - "{{.Hostname}}-org2-dummy-com"
         - "{{.Hostname}}-org2-dummy-com.dummy-com.svc.cluster.local"
         - "{{.Hostname}}.org2.dummy.com"
+        - "peers.org2.dummy.com"
     Users:
       Count: 1
   - Name: Org3
@@ -68,5 +70,6 @@ PeerOrgs:
         - "{{.Hostname}}-org3-dummy-com"
         - "{{.Hostname}}-org3-dummy-com.dummy-com.svc.cluster.local"
         - "{{.Hostname}}.org3.dummy.com"
+        - "peers.org3.dummy.com"
     Users:
       Count: 1
