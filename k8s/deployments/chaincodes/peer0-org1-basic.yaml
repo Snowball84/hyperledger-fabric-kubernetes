@@ -16,6 +16,7 @@ spec:
       labels:
         chaincode: peer0-org1-chaincode-demo
     spec:
+      nodeName: worker1
       containers:
         - name: peer0-org1-chaincode-demo
           image: basicj_ccaas_image

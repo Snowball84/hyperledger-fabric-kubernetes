@@ -24,7 +24,7 @@ spec:
           stdin: true
           env:
             - name: FABRIC_LOGGING_SPEC
-              value: debug
+              value: info
             - name: CHANNEL_NAME
               value: channelall
             - name: CORE_PEER_ADDRESS
@@ -46,6 +46,8 @@ spec:
               mountPath: /etc/hyperledger/fabric/artifacts
             - name: hlf-crypto-config
               mountPath: /etc/hyperledger/fabric/crypto
+            - name: org1-snapshot
+              mountPath: /etc/hyperledger/fabric/snapshots
       volumes:
         - name: chaincode-package
           persistentVolumeClaim:
@@ -56,3 +58,6 @@ spec:
         - name: hlf-crypto-config
           persistentVolumeClaim:
             claimName: hlf-crypto-config
+        - name: org1-snapshot
+          persistentVolumeClaim:
+            claimName: org1-snapshot

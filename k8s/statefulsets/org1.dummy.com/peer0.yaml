@@ -29,6 +29,9 @@ spec:
         - name: hlf-crypto-config
           persistentVolumeClaim:
             claimName: hlf-crypto-config
+        - name: org1-snapshot
+          persistentVolumeClaim:
+            claimName: org1-snapshot
       containers:
         - name: couchdb-org1-dummy-com
           image: couchdb:3.2.2
@@ -55,11 +58,11 @@ spec:
           ports:
             - containerPort: 5984
         - name: peer0-org1-dummy-com
-          image: hyperledger/fabric-peer:2.4
+          image: hyperledger/fabric-peer:2.5
           workingDir: /opt/gopath/src/github.com/hyperledger/fabric/peer
           env:
             - name: FABRIC_LOGGING_SPEC
-              value: debug:cauthdsl,policies,msp,grpc,peer.gossip.mcs,gossip,leveldbhelper=info
+              value: info:deliveryClient=debug
             - name: CORE_PEER_ID
               value: peer0-org1-dummy-com
             - name: CORE_PEER_ADDRESS
@@ -75,9 +78,9 @@ spec:
             - name: CORE_PEER_MSPCONFIGPATH
               value: /var/hyperledger/peer/msp
             - name: CORE_PEER_GOSSIP_ORGLEADER
-              value: "false"
-            - name: CORE_PEER_GOSSIP_USELEADERELECTION
               value: "true"
+            - name: CORE_PEER_GOSSIP_USELEADERELECTION
+              value: "false"
             - name: CORE_PEER_GOSSIP_BOOTSTRAP
               value: peer0-org1-dummy-com:7051
             - name: CORE_PEER_GOSSIP_EXTERNALENDPOINT
@@ -137,3 +140,11 @@ spec:
             - name: hlf-crypto-config
               mountPath: /var/hyperledger/peer/tls
               subPath: peerOrganizations/org1.dummy.com/peers/peer0.org1.dummy.com/tls
+            - name: org1-snapshot
+              mountPath: /var/hyperledger/production/snapshots
+              subPath: org1-snapshot
+#          resources:
+#            requests:
+#              cpu: "200m"
+#            limits:
+#              cpu: "200m"

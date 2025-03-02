@@ -45,6 +45,16 @@ peer:
     # This case is useful for docker containers.
     # When set to true, will override peer address.
     addressAutoDetect: false
+    
+    gateway:
+        # Whether the gateway is enabled for this Peer.
+        enabled: true
+        # endorsementTimeout is the duration the gateway waits for a response
+        # from other endorsing peers before returning a timeout error to the client.
+        endorsementTimeout: 30s
+        # dialTimeout is the duration the gateway waits for a connection
+        # to other network nodes.
+        dialTimeout: 2m
 
     # Keepalive settings for peer server and clients
     keepalive:
@@ -237,7 +247,7 @@ peer:
             # peer.gossip.orgleader being false, the peer's ledger may lag behind
             # the rest of the peers and will never catch up due to state transfer
             # being disabled.
-            enabled: false
+            enabled: true
             # checkInterval interval to check whether peer is lagging behind enough to
             # request blocks via state transfer from another peer.
             checkInterval: 10s

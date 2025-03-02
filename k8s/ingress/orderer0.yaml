@@ -8,8 +8,8 @@ metadata:
     nginx.ingress.kubernetes.io/proxy-body-size: "0" # no limit
     nginx.ingress.kubernetes.io/ssl-passthrough: "true" # orderer should teminate the ssl traffic
     nginx.ingress.kubernetes.io/backend-protocol: "GRPCS"
-    nginx.ingress.kubernetes.io/enable-http2: "true"
-    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+#    nginx.ingress.kubernetes.io/enable-http2: "true"
+#    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
 spec:
   ingressClassName: nginx
   rules:
@@ -43,25 +43,55 @@ spec:
                 name: peer0-org1-dummy-com
                 port:
                   name: listen
-    - host: operations.peer0.org1.dummy.com
+    - host: peer1.org1.dummy.com
       http:
         paths:
-          - path: /healthz
-            pathType: Exact
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: peer1-org1-dummy-com
+                port:
+                  name: listen
+    - host: peers.org1.dummy.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
             backend:
               service:
                 name: peer0-org1-dummy-com
                 port:
-                  name: operations
-  defaultBackend:
-    service:
-      name: peer0-org1-dummy-com
-      port:
-        number: 7051
-  tls:
-  - hosts:
-    - peer0.org1.dummy.com
-    secretName: grpc-secret
+                  name: listen
+#    - host: peers.org2.dummy.com
+#      http:
+#        paths:
+#          - path: /
+#            pathType: Prefix
+#            backend:
+#              service:
+#                name: peer0-org2-dummy-com
+#                port:
+#                  name: listen
+#    - host: operations.peer0.org1.dummy.com
+#      http:
+#        paths:
+#          - path: /healthz
+#            pathType: Exact
+#            backend:
+#              service:
+#                name: peer0-org1-dummy-com
+#                port:
+#                  name: operations
+#  defaultBackend:
+#    service:
+#      name: peer0-org1-dummy-com
+#      port:
+#        number: 7051
+#  tls:
+#  - hosts:
+#    - peer0.org1.dummy.com
+#    secretName: grpc-secret
 #  tls:
 #    - hosts:
 #        - orderer0.dummy.com

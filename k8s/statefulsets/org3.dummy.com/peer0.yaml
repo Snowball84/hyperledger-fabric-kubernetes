@@ -21,7 +21,7 @@ spec:
         component: "peer0.org3.dummy.com"
         type: peer
     spec:
-      nodeName: worker3-virtual-machine
+      nodeName: worker1
       volumes:
         - name: chaincode-buildpack
           persistentVolumeClaim:
@@ -55,7 +55,7 @@ spec:
           ports:
             - containerPort: 5984
         - name: peer0-org3-dummy-com
-          image: hyperledger/fabric-peer:2.4
+          image: hyperledger/fabric-peer:2.4.24
           workingDir: /opt/gopath/src/github.com/hyperledger/fabric/peer
           env:
             - name: FABRIC_LOGGING_SPEC

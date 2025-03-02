@@ -2,23 +2,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: peer0-org2-chaincode-demo
+  name: peer2-org1-chaincode-demo
   namespace: dummy-com
   labels: 
-    chaincode: peer0-org2-chaincode-demo
+    chaincode: peer2-org1-chaincode-demo
 spec:
   replicas: 1
   selector:
     matchLabels:
-      chaincode: peer0-org2-chaincode-demo
+      chaincode: peer2-org1-chaincode-demo
   template:
     metadata:
       labels:
-        chaincode: peer0-org2-chaincode-demo
+        chaincode: peer2-org1-chaincode-demo
     spec:
       nodeName: worker1
       containers:
-        - name: peer0-org2-chaincode-demo
+        - name: peer2-org1-chaincode-demo
           image: basicj_ccaas_image
           imagePullPolicy: IfNotPresent
           env:

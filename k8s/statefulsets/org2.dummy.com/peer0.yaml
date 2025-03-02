@@ -21,7 +21,7 @@ spec:
         component: "peer0.org2.dummy.com"
         type: peer
     spec:
-#      nodeName: worker3-virtual-machine
+      nodeName: worker1
       volumes:
         - name: chaincode-buildpack
           persistentVolumeClaim:
@@ -55,7 +55,7 @@ spec:
           ports:
             - containerPort: 5984
         - name: peer0-org2-dummy-com
-          image: hyperledger/fabric-peer:2.4
+          image: hyperledger/fabric-peer:2.5
           workingDir: /opt/gopath/src/github.com/hyperledger/fabric/peer
           env:
             - name: FABRIC_LOGGING_SPEC
@@ -75,9 +75,9 @@ spec:
             - name: CORE_PEER_MSPCONFIGPATH
               value: /var/hyperledger/peer/msp
             - name: CORE_PEER_GOSSIP_ORGLEADER
-              value: "false"
-            - name: CORE_PEER_GOSSIP_USELEADERELECTION
               value: "true"
+            - name: CORE_PEER_GOSSIP_USELEADERELECTION
+              value: "false"
             - name: CORE_PEER_GOSSIP_BOOTSTRAP
               value: peer0-org2-dummy-com:7051
             - name: CORE_PEER_GOSSIP_EXTERNALENDPOINT
@@ -137,3 +137,8 @@ spec:
             - name: hlf-crypto-config
               mountPath: /var/hyperledger/peer/tls
               subPath: peerOrganizations/org2.dummy.com/peers/peer0.org2.dummy.com/tls
+          resources:
+            requests:
+              cpu: "200m"
+            limits:
+              cpu: "200m"

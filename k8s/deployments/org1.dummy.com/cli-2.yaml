@@ -24,7 +24,7 @@ spec:
           stdin: true
           env:
             - name: FABRIC_LOGGING_SPEC
-              value: debug
+              value: info
             - name: CHANNEL_NAME
               value: channelall
             - name: CORE_PEER_ADDRESS

@@ -3,22 +3,22 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: peer2-org2-dummy-com
+  name: peer3-org1-dummy-com
   namespace: dummy-com
   labels: 
-    component: "peer2.org2.dummy.com"
+    component: "peer3.org1.dummy.com"
     type: peer
 spec:
   replicas: 1
-  serviceName: peer2-org2-dummy-com
+  serviceName: peer3-org1-dummy-com
   selector:
     matchLabels:
-      component: "peer2.org2.dummy.com"
+      component: "peer3.org1.dummy.com"
       type: peer
   template:
     metadata:
       labels:
-        component: "peer2.org2.dummy.com"
+        component: "peer3.org1.dummy.com"
         type: peer
     spec:
       nodeName: worker1
@@ -30,19 +30,19 @@ spec:
           persistentVolumeClaim:
             claimName: hlf-crypto-config
       containers:
-        - name: couchdb-org2-dummy-com
+        - name: couchdb-org1-dummy-com
           image: couchdb:3.2.2
           imagePullPolicy: IfNotPresent
           env:
             - name: COUCHDB_USER
               valueFrom:
                 secretKeyRef:
-                  name: couchdb-org2-dummy-com
+                  name: couchdb-org1-dummy-com
                   key: username
             - name: COUCHDB_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: couchdb-org2-dummy-com
+                  name: couchdb-org1-dummy-com
                   key: password
           livenessProbe:
             httpGet:
@@ -54,16 +54,16 @@ spec:
             timeoutSeconds: 1
           ports:
             - containerPort: 5984
-        - name: peer2-org2-dummy-com
+        - name: peer3-org1-dummy-com
           image: hyperledger/fabric-peer:2.5
           workingDir: /opt/gopath/src/github.com/hyperledger/fabric/peer
           env:
             - name: FABRIC_LOGGING_SPEC
               value: debug:cauthdsl,policies,msp,grpc,peer.gossip.mcs,gossip,leveldbhelper=info
             - name: CORE_PEER_ID
-              value: peer2-org2-dummy-com
+              value: peer3-org1-dummy-com
             - name: CORE_PEER_ADDRESS
-              value: peer2-org2-dummy-com:7051
+              value: peer3-org1-dummy-com:7051
             - name: CORE_PEER_LISTENADDRESS
               value: 0.0.0.0:7051
             - name: CORE_PEER_CHAINCODELISTENADDRESS
@@ -71,7 +71,7 @@ spec:
             - name: CORE_OPERATIONS_LISTENADDRESS
               value: 0.0.0.0:9443
             - name: CORE_PEER_LOCALMSPID
-              value: Org2MSP
+              value: Org1MSP
             - name: CORE_PEER_MSPCONFIGPATH
               value: /var/hyperledger/peer/msp
             - name: CORE_PEER_GOSSIP_ORGLEADER
@@ -79,9 +79,9 @@ spec:
             - name: CORE_PEER_GOSSIP_USELEADERELECTION
               value: "true"
             - name: CORE_PEER_GOSSIP_BOOTSTRAP
-              value: peer2-org2-dummy-com:7051
+              value: peer3-org1-dummy-com:7051
             - name: CORE_PEER_GOSSIP_EXTERNALENDPOINT
-              value: peer2-org2-dummy-com:7051
+              value: peer3-org1-dummy-com:7051
             - name: CORE_PEER_TLS_ENABLED
               value: "true"
             - name: CORE_PEER_TLS_ROOTCERT_FILE
@@ -91,9 +91,9 @@ spec:
             - name: CORE_PEER_TLS_KEY_FILE
               value: /var/hyperledger/peer/tls/server.key
             - name: CORE_PEER_TLS_SERVERHOSTOVERRIDE
-              value: peer2-org2-dummy-com
+              value: peer3-org1-dummy-com
             - name: CHAINCODE_AS_A_SERVICE_BUILDER_CONFIG
-              value: '{"peername":"peer2org2"}'
+              value: '{"peername":"peer3org1"}'
             - name: CORE_LEDGER_STATE_STATEDATABASE
               value: CouchDB
             - name: CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS
@@ -101,12 +101,12 @@ spec:
             - name: CORE_LEDGER_STATE_COUCHDBCONFIG_USERNAME
               valueFrom:
                 secretKeyRef:
-                  name: couchdb-org2-dummy-com
+                  name: couchdb-org1-dummy-com
                   key: username
             - name: CORE_LEDGER_STATE_COUCHDBCONFIG_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: couchdb-org2-dummy-com
+                  name: couchdb-org1-dummy-com
                   key: password
           ports:
             - containerPort: 7051
@@ -121,10 +121,10 @@ spec:
               subPath: config/core.yaml
             - name: hlf-crypto-config
               mountPath: /var/hyperledger/peer/msp
-              subPath: peerOrganizations/org2.dummy.com/peers/peer2.org2.dummy.com/msp
+              subPath: peerOrganizations/org1.dummy.com/peers/peer3.org1.dummy.com/msp
             - name: hlf-crypto-config
               mountPath: /var/hyperledger/peer/tls
-              subPath: peerOrganizations/org2.dummy.com/peers/peer2.org2.dummy.com/tls
+              subPath: peerOrganizations/org1.dummy.com/peers/peer3.org1.dummy.com/tls
           resources:
             requests:
               cpu: "200m"
