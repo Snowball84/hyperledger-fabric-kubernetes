@@ -466,7 +466,7 @@ Profiles:
             Organizations:
                 - *Org1
                 - *Org2
-#                - *Org3
+                - *Org3
             Capabilities:
                 <<: *ApplicationCapabilities
     Channel2:
@@ -485,6 +485,36 @@ Profiles:
             Capabilities:
                 <<: *ApplicationCapabilities
     Channel3:
+        <<: *ChannelDefaults
+        Orderer:
+            <<: *OrdererDefaults
+            Organizations:
+                - *OrdererOrg
+            Capabilities: *OrdererCapabilities
+        Application:
+            <<: *ApplicationDefaults
+            Organizations:
+                - *Org1
+                - *Org2
+#                - *Org3
+            Capabilities:
+                <<: *ApplicationCapabilities
+    Channel4:
+        <<: *ChannelDefaults
+        Orderer:
+            <<: *OrdererDefaults
+            Organizations:
+                - *OrdererOrg
+            Capabilities: *OrdererCapabilities
+        Application:
+            <<: *ApplicationDefaults
+            Organizations:
+                - *Org1
+                - *Org2
+                - *Org3
+            Capabilities:
+                <<: *ApplicationCapabilities
+    Channel5:
         <<: *ChannelDefaults
         Orderer:
             <<: *OrdererDefaults

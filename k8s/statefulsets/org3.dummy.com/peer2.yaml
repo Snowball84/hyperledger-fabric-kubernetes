@@ -21,7 +21,9 @@ spec:
         component: "peer2.org3.dummy.com"
         type: peer
     spec:
-      nodeName: worker1
+#      nodeName: worker1
+      nodeSelector:
+        node-role: peer
       volumes:
         - name: chaincode-buildpack
           persistentVolumeClaim:
@@ -55,7 +57,7 @@ spec:
           ports:
             - containerPort: 5984
         - name: peer2-org3-dummy-com
-          image: hyperledger/fabric-peer:2.4
+          image: hyperledger/fabric-peer:2.5
           workingDir: /opt/gopath/src/github.com/hyperledger/fabric/peer
           env:
             - name: FABRIC_LOGGING_SPEC
@@ -75,9 +77,9 @@ spec:
             - name: CORE_PEER_MSPCONFIGPATH
               value: /var/hyperledger/peer/msp
             - name: CORE_PEER_GOSSIP_ORGLEADER
-              value: "false"
-            - name: CORE_PEER_GOSSIP_USELEADERELECTION
               value: "true"
+            - name: CORE_PEER_GOSSIP_USELEADERELECTION
+              value: "false"
             - name: CORE_PEER_GOSSIP_BOOTSTRAP
               value: peer2-org3-dummy-com:7051
             - name: CORE_PEER_GOSSIP_EXTERNALENDPOINT
@@ -92,6 +94,8 @@ spec:
               value: /var/hyperledger/peer/tls/server.key
             - name: CORE_PEER_TLS_SERVERHOSTOVERRIDE
               value: peer2-org3-dummy-com
+            - name: CHAINCODE_AS_A_SERVICE_BUILDER_CONFIG
+              value: '{"peername":"peer2org3"}'
             - name: CORE_LEDGER_STATE_STATEDATABASE
               value: CouchDB
             - name: CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS

@@ -15,6 +15,7 @@ spec:
       labels:
         component: "cli.peer0.org2.dummy.com"
     spec:
+      nodeName: worker5
       containers:
         - name: cli-peer0-org2-dummy-com
           image: hyperledger/fabric-tools:2.4

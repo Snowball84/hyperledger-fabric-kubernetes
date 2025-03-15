@@ -2,19 +2,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: peer0-org1-chaincode-demo
+  name: peer2-org3-chaincode-demo
   namespace: dummy-com
   labels: 
-    chaincode: peer0-org1-chaincode-demo
+    chaincode: peer2-org3-chaincode-demo
 spec:
   replicas: 1
   selector:
     matchLabels:
-      chaincode: peer0-org1-chaincode-demo
+      chaincode: peer2-org3-chaincode-demo
   template:
     metadata:
       labels:
-        chaincode: peer0-org1-chaincode-demo
+        chaincode: peer2-org3-chaincode-demo
     spec:
 #      nodeName: worker1
       affinity:
@@ -22,10 +22,10 @@ spec:
           requiredDuringSchedulingIgnoredDuringExecution:
             - labelSelector:
               matchLabels:
-                component: "peer0.org1.dummy.com"
+                component: "peer2.org3.dummy.com"
               topologyKey: "kubernetes.io/hostname"
       containers:
-        - name: peer0-org1-chaincode-demo
+        - name: peer2-org3-chaincode-demo
           image: basicj_ccaas_image
           imagePullPolicy: IfNotPresent
           env:

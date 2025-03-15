@@ -1,23 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: "cli.peer0.org3.dummy.com"
+  name: "cli.peer3.org1.dummy.com"
   namespace: dummy-com
   labels:
-    component: "cli.peer0.org3.dummy.com"
+    component: "cli.peer3.org1.dummy.com"
 spec:
   replicas: 1
   selector:
     matchLabels:
-      component: "cli.peer0.org3.dummy.com"
+      component: "cli.peer3.org1.dummy.com"
   template:
     metadata:
       labels:
-        component: "cli.peer0.org3.dummy.com"
+        component: "cli.peer3.org1.dummy.com"
     spec:
-      nodeName: worker3
+      nodeName: worker4
       containers:
-        - name: cli-peer0-org3-dummy-com
+        - name: cli-peer3-org1-dummy-com
           image: hyperledger/fabric-tools:2.4
           imagePullPolicy: IfNotPresent
           workingDir: /etc/hyperledger/fabric/
@@ -29,15 +29,15 @@ spec:
             - name: CHANNEL_NAME
               value: channelall
             - name: CORE_PEER_ADDRESS
-              value: peer0-org3-dummy-com:7051
+              value: peer3-org1-dummy-com:7051
             - name: CORE_PEER_LOCALMSPID
-              value: Org3MSP
+              value: Org1MSP
             - name: CORE_PEER_TLS_ENABLED
               value: "true"
             - name: CORE_PEER_TLS_ROOTCERT_FILE
-              value: /etc/hyperledger/fabric/crypto/peerOrganizations/org3.dummy.com/peers/peer0.org3.dummy.com/tls/ca.crt
+              value: /etc/hyperledger/fabric/crypto/peerOrganizations/org1.dummy.com/peers/peer3.org1.dummy.com/tls/ca.crt
             - name: CORE_PEER_MSPCONFIGPATH
-              value: /etc/hyperledger/fabric/crypto/peerOrganizations/org3.dummy.com/users/Admin@org3.dummy.com/msp
+              value: /etc/hyperledger/fabric/crypto/peerOrganizations/org1.dummy.com/users/Admin@org1.dummy.com/msp
             - name: ORDERER_CA
               value: /etc/hyperledger/fabric/crypto/ordererOrganizations/dummy.com/orderers/orderer0.dummy.com/msp/tlscacerts/tlsca.dummy.com-cert.pem
           volumeMounts:
@@ -47,6 +47,8 @@ spec:
               mountPath: /etc/hyperledger/fabric/artifacts
             - name: hlf-crypto-config
               mountPath: /etc/hyperledger/fabric/crypto
+            - name: org1-snapshot
+              mountPath: /etc/hyperledger/fabric/snapshots
       volumes:
         - name: chaincode-package
           persistentVolumeClaim:
@@ -57,3 +59,6 @@ spec:
         - name: hlf-crypto-config
           persistentVolumeClaim:
             claimName: hlf-crypto-config
+        - name: org1-snapshot
+          persistentVolumeClaim:
+            claimName: org1-snapshot

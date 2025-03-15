@@ -16,7 +16,14 @@ spec:
       labels:
         chaincode: peer2-org2-chaincode-demo
     spec:
-      nodeName: worker1
+#      nodeName: worker1
+      affinity:
+        podAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+              matchLabels:
+                component: "peer2.org2.dummy.com"
+              topologyKey: "kubernetes.io/hostname"
       containers:
         - name: peer2-org2-chaincode-demo
           image: basicj_ccaas_image

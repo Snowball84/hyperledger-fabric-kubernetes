@@ -25,6 +25,7 @@ spec:
         component: orderer0.dummy.com
         type: orderer
     spec:
+      nodeName: worker6
       volumes:
         - name: hlf-artifacts
           persistentVolumeClaim:
@@ -126,6 +127,7 @@ spec:
         component: orderer1.dummy.com
         type: orderer
     spec:
+      nodeName: worker6
       volumes:
         - name: hlf-artifacts
           persistentVolumeClaim:
@@ -227,6 +229,7 @@ spec:
         component: orderer2.dummy.com
         type: orderer
     spec:
+      nodeName: worker6
       volumes:
         - name: hlf-artifacts
           persistentVolumeClaim:
